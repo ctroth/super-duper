@@ -35,45 +35,44 @@ def main():
 
         if choice == '1': #COMPLETED
             priority = Prompt.ask("Enter your task priority (1-10) with 1 being the most important and 10 being the least", choices = [str(i) for i in range(1,11)],)
-            task = Prompt.ask("Enter a description of your task")
-            task_number += 1
+            #the above priority variable asks the user to input a number between 1 and 10.  if it is not one of them an error is thrown stating Please select one of the available options. this is done via 'choices'
+            task = Prompt.ask("Enter a description of your task") #asks the user to input a description of the task
+            task_number += 1 #increments the task number by 1
 
-            to_do_list[task_number] = [priority, task]
+            to_do_list[task_number] = [priority, task] #adds the task to the to do list with the task number as the key and the priority and task as the values
 
-            console.print(f"Your current 'To Do List' is as follows -\n")
-            for value in to_do_list.values():
-                console.print(value[1])
-            console.print("\n")
+            console.print(f"Your current 'To Do List' is as follows -\n") #prints the current to do list in order it was created
+            for value in to_do_list.values(): #iterates through the values in the to do list - the values are the priority and task
+                console.print(value[1]) #prints the task
+            console.print("\n") #prints a new line
 
 
         elif choice == '2': #COMPLETED
-            console.print(f"Your current 'To Do List' is as follows -\n")
-            count = 1
-            for value in to_do_list.values():
-                console.print(f"{count}. {value[1].title()}\n")
-                count += 1
+            console.print(f"Your current 'To Do List' is as follows -\n") #prints the current to do list in order it was created
+            count = 1 #count variable to increment the number of tasks
+            for value in to_do_list.values(): #iterates through the values in the to do list - the values are the priority and task
+                console.print(f"{count}. {value[1].title()}\n") #prints the task with the count number in front of it.  uses title to capitalize the first letter of each word
+                count += 1 #increments the count variable by 1
 
         elif choice == '3':
             pass
 
-        elif choice == '4':
-            console.print(f"Your current 'To Do List' in order of priority is as follows -\n")
-            count = 1
-            list_length = len(to_do_list)
+        elif choice == '4': #COMPLETED
+            console.print(f"Your current 'To Do List' in order of priority is as follows -\n") #prints the current to do list in order of priority
+            count = 1 #count variable to increment the number of tasks
+            list_length = len(to_do_list) #gets the length of the to do list, not currently used
             
-            while count < list_length:
-                for value in to_do_list.values(): #value[0] is listed as a string
-                    if value[int(0)] == count:
-                        console.print(f"Priority {count}. {value[1]}")
-                        count += 1
+            sorted_tasks = sorted(to_do_list.items(), key=lambda item: int(item[1][0])) #sorts the to do list by the priority of the task
+                #key=lambda item: int(item[1][0]) is a lambda function that takes in an item and returns the integer of the priority of the task
+            for task in sorted_tasks: #iterates through the sorted tasks variable
+                console.print(f"Priority {task[1][0]}. {task[1][1].title()}") #prints the task with the priority in front of it.  uses title to capitalize the first letter of each word
                 
         
         elif choice == '5':
             pass
 
         elif choice == '6': #COMPLETED
-            exit()
-        
-        print(f"Exiting your 'To Do List'...")
+            print(f"Exiting your 'To Do List'...")
+            exit() #exits the program
 
 main()
