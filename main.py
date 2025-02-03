@@ -24,22 +24,26 @@ def main():
     global task_number
 
     
-    name = Prompt.ask("\nEnter your name").lower().title() #asks the user for name.  sets all characters to lower case and then sets the first character to uppercase via title
+    name = Prompt.ask("\nEnter your name").lower().title() #asks the user for name.  sets all characters to lower case and then sets the first 
+    #character to uppercase via title
     console.print(f"\nWelcome {name} to your 'To Do List'\n") #prints a welcome message to the user with their name
 
     while True: #infinite loop that will continue until the user selects the exit option
 
-        console.print(Panel.fit(f"\n[bold green]--- {name}'s To Do List ---[/bold green]",title="Configuration Menu", )) #creates a box with Configuration Menu at the top.  In the center is displayed the user's name and To Do List
+        console.print(Panel.fit(f"\n[bold green]--- {name}'s To Do List ---[/bold green]",title="Configuration Menu", )) #creates a box with Configuration Menu 
+        #at the top.  In the center is displayed the user's name and To Do List
         console.print("\n1. Enter a new task\n2. View Current To Do List\n3. Remove task from To Do List\n4. List taks in order of priority\n5. Export 'To Do List' to JSON file\n6. Exit\n") #asks the user what they want to do
 
-        choice = Prompt.ask("Select an option (1-6)", choices =[str(i) for i in range(1,7)]) #asks the user to input a number matching one of the above choices.  if it is not one of them an error is thrown stating Please select one of the available options. this is done via 'choices'
+        choice = Prompt.ask("Select an option (1-6)", choices =[str(i) for i in range(1,7)]) #asks the user to input a number matching one of the 
+        #above choices.  if it is not one of them an error is thrown stating Please select one of the available options. this is done via 'choices'
         console.print("\n") #prints a new line
 
         if choice == '1': #COMPLETED - #lets the user add a new task to the to do list
             priority = Prompt.ask("Enter your task priority (1-10) with 1 being the most important and 10 being the least", choices = [str(i) for i in range(1,11)],)
             #the above priority variable asks the user to input a number between 1 and 10.  if it is not one of them an error is thrown stating Please select one of the available options. this is done via 'choices'
             console.print("\n") #prints a new line
-            task = Prompt.ask("Enter a description of your task\n") #asks the user to input a description of the task
+            task = Prompt.ask("Enter a description of your task") #asks the user to input a description of the task
+            console.print("\n") #prints a new line
             task_number += 1 #increments the task number by 1
 
             to_do_list[task_number] = [priority, task] #adds the task to the to do list with the task number as the key and the priority and task as the values
@@ -60,13 +64,16 @@ def main():
             list_length = len(to_do_list) #gets the length of the to do list, not currently used
             
             sorted_tasks = sorted(to_do_list.items(), key=lambda item: int(item[1][0])) #sorts the to do list by the priority of the task
-                #key=lambda item: int(item[1][0]) is a lambda function that takes in an item and returns the integer of the priority of the task
+                #key=lambda item: int(item[1][0]) is a lambda function that takes in an item and returns the integer of the priority of the task.  
+                #it sets the priority, starting at 1, outputs the task and then increments the priority by 1
             for task in sorted_tasks: #iterates through the sorted tasks variable
-                console.print(f"Priority {task[1][0]}. {task[1][1].title()}") #prints the task with the priority in front of it.  uses title to capitalize the first letter of each word
-                
+                console.print(f"Priority {task[1][0]}. {task[1][1].title()}") #prints the task with the priority in front of it.  uses title 
+                #to capitalize the first letter of each word
+            console.print("\n") #prints a new line    
         
-        elif choice == '5':
-            pass
+        elif choice == '5': #COMPLETED - exports to do list to JSON file
+            create_json_file() #calls the create_json_file function that is defined below
+            output_user_json_file() #calls the output_user_json_file function that is defined below
 
         elif choice == '6': #COMPLETED - exits the program
             print(f"Exiting your 'To Do List' {name}\n") #prints a message to the user that they are exiting the program
@@ -87,5 +94,14 @@ def output_current_to_do_list(): #COMPLETED - outputs the current to do list
     for value in to_do_list.values(): #iterates through the values of the to do list
         console.print(f"{count}. {value[1].title()}\n") #prints the task with the count in front of it.  uses title to capitalize the first letter of each word
         count += 1 #increments the count by 1
+
+def create_json_file(): #function to create a JSON file
+    user_json_file = json.dumps(to_do_list, indent=4) #converts the to do list to a JSON file with an indent of 4
+
+def output_user_json_file(): #function to output the JSON file
+    console.print(f"Your 'To Do List' has been saved to a JSON file called 'user_to_do_list.json'\n") #prints a message to the user that the to do list has 
+    #been saved to a JSON file
+    with open("user_to_do_list.json", "w") as file:
+        json.dump(to_do_list, file, indent=4) #writes the to do list to a JSON file with an indent of 4
 
 main()
