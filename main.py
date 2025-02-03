@@ -26,15 +26,15 @@ def main():
     
     name = Prompt.ask("\nEnter your name").lower().title() #asks the user for name.  sets all characters to lower case and then sets the first 
     #character to uppercase via title
-    console.print(f"\nWelcome {name} to your 'To Do List'\n") #prints a welcome message to the user with their name
+    console.print(f"\nWelcome {name} to your 'To Do List!'\n") #prints a welcome message to the user with their name
 
     while True: #infinite loop that will continue until the user selects the exit option
 
         console.print(Panel.fit(f"\n[bold green]--- {name}'s To Do List ---[/bold green]",title="Configuration Menu", )) #creates a box with Configuration Menu 
         #at the top.  In the center is displayed the user's name and To Do List
-        console.print("\n1. Enter a new task\n2. View Current To Do List\n3. Remove task from To Do List\n4. List taks in order of priority\n5. Export 'To Do List' to JSON file\n6. Exit\n") #asks the user what they want to do
+        console.print("\n1. Enter A New Task\n2. View Current To Do List\n3. Remove Task From To Do List\n4. List Tasks In Order of Priority\n5. Export 'To Do List' to JSON File\n6. Load JSON File\n7. Exit") #asks the user what they want to do
 
-        choice = Prompt.ask("Select an option (1-6)", choices =[str(i) for i in range(1,7)]) #asks the user to input a number matching one of the 
+        choice = Prompt.ask("Select an option (1-7)", choices =[str(i) for i in range(1,8)]) #asks the user to input a number matching one of the 
         #above choices.  if it is not one of them an error is thrown stating Please select one of the available options. this is done via 'choices'
         console.print("\n") #prints a new line
 
@@ -75,15 +75,19 @@ def main():
             create_json_file() #calls the create_json_file function that is defined below
             output_user_json_file() #calls the output_user_json_file function that is defined below
 
-        elif choice == '6': #COMPLETED - exits the program
+        elif choice == '6': #COMPLETED - loads a JSON file
+            load_json_file() #calls the load_json_file function that is defined below
+
+        elif choice == '7': #COMPLETED - exits the program
             print(f"Exiting your 'To Do List' {name}\n") #prints a message to the user that they are exiting the program
             exit() #exits the program
 
 def del_task(): #COMPLETED - lets the user delete a task from the to do list
-    task_deletion = Prompt.ask("Enter the task number you would like to delete\n") #asks the user to input the task number they would like to delete
+    task_deletion = Prompt.ask("Enter the task number you would like to delete") #asks the user to input the task number they would like to delete
+    console.print("\n") #prints a new line
     if int(task_deletion) in to_do_list: #checks if the task number is in the to do list
         del to_do_list[int(task_deletion)] #deletes the task from the to do list
-        console.print(f"Task {task_deletion} has been deleted\n") #prints a message to the user that the task has been deleted
+        console.print(f"Task {task_deletion} has been successfully deleted\n") #prints a message to the user that the task has been deleted
     else: #if the task number is not in the to do list
         console.print(f"Task {task_deletion} does not exist\n") #prints a message to the user that the task does not exist
     output_current_to_do_list() #calls the output_current_to_do_list function to display the current to do list
@@ -103,5 +107,10 @@ def output_user_json_file(): #function to output the JSON file
     #been saved to a JSON file
     with open("user_to_do_list.json", "w") as file:
         json.dump(to_do_list, file, indent=4) #writes the to do list to a JSON file with an indent of 4
+
+def load_json_file(): #function to load a previous JSON file or JSON file to use in the 'To Do List' python program
+    global to_do_list
+    with open("user_to_do_list.json", "r") as file: #opens the JSON file in read mode
+        to_do_list = json.load(file) #loads the JSON file into the to do list variable
 
 main()
