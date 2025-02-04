@@ -40,10 +40,10 @@ def main():
         console.print(Panel(
             subtitle=f"[bold green]--- {name}'s 'To Do List' ---[/bold green]",
             title="[bold yellow]--- Configuration Menu --- [/bold yellow]",
-            renderable="[bold white]\n1. Enter A New Task\n2. View Current 'To Do List'\n3. Delete Task From 'To Do List'\n4. View 'To Do List' Priority\n5. Export 'To Do List' to JSON File\n6. Load JSON File\n7. Exit [/bold white]")) #prints a panel with the configuration menu options.  uses title, subtitle, and renderable to display the menu.  Renderable is used to display the menu options.  The word renderable is used to display the menu options in a different color
+            renderable="[bold white]\n1. Enter A New Task\n2. View Current 'To Do List'\n3. Delete Task From 'To Do List'\n4. Update Task In 'To Do List'\n5. View 'To Do List' Priority\n6. Export 'To Do List' to JSON File\n7. Load JSON File\n8. Exit [/bold white]")) #prints a panel with the configuration menu options.  uses title, subtitle, and renderable to display the menu.  Renderable is used to display the menu options.  The word renderable is used to display the menu options in a different color
         console.print("\n") #prints a new line
 
-        choice = Prompt.ask("Select an option (1-7)", choices =[str(i) for i in range(1,8)]) #asks the user to input a number matching one of the 
+        choice = Prompt.ask("Select an option (1-8)", choices =[str(i) for i in range(1,9)]) #asks the user to input a number matching one of the 
         #above choices.  if it is not one of them, an error is thrown stating please select one of the available options. this is done via 'choices'
         console.print("\n") #prints a new line
 
@@ -69,27 +69,36 @@ def main():
 
         elif choice == '3': #COMPLETED - lets the user delete a task from the to do list
             del_task() #calls the del_task function that is defined below
+        
+        elif choice == '4':
+            update_task() #calls the update_task function that is defined below
 
-        elif choice == '4': #COMPLETED - lists tasks in order of priority
+        elif choice == '5': #COMPLETED - lists tasks in order of priority
             to_do_list_priority_table() #calls the to_do_list_priority_table function that is defined below   
         
-        elif choice == '5': #COMPLETED - exports to do list to JSON file
+        elif choice == '6': #COMPLETED - exports to do list to JSON file
             create_json_file() #calls the create_json_file function that is defined below
             output_user_json_file() #calls the output_user_json_file function that is defined below
 
-        elif choice == '6': #COMPLETED - loads a JSON file
+        elif choice == '7': #COMPLETED - loads a JSON file
             load_json_file() #calls the load_json_file function that is defined below
 
-        elif choice == '7': #COMPLETED - exits the program
+        elif choice == '8': #COMPLETED - exits the program
             print(f"Exiting your 'To Do List' {name}\n") #prints a message to the user that they are exiting the program
             exit() #exits the program
 
 def del_task(): #COMPLETED - lets the user delete a task from the to do list
-    task_deletion = Prompt.ask("Enter the task number you would like to delete. Total number of tasks -", choices = [str(num) for num in to_do_list.keys()]) #asks the user to input the task number they would like to delete
-    console.print("\n") #prints a new line
-    del to_do_list[int(task_deletion)] #deletes the task from the to do list
-    console.print(f"Task {task_deletion} has been successfully deleted\n") #prints a message to the user that the task has been deleted
-    to_do_list_table() #calls the to_do_list_table function to display the current to do list
+    if len(to_do_list) == 0: #checks if the length of the 'To Do List' is 0
+        console.print("[bold red]THERE IS NO TASK TO DELETE![/bold red]\n") #prints a message to the user that there is no task to delete
+        return #returns to the main function
+    else: #if there are tasks in the to do list then the following code is executed
+        task_deletion = Prompt.ask("Enter the task number you would like to delete. Total number of tasks -", choices = [str(num) for num in to_do_list.keys()]) #asks the user to input the task number they would like to delete
+        console.print("\n") #prints a new line
+        del to_do_list[task_deletion] #deletes the task from the to do list
+        console.print(f"Task {task_deletion} has been successfully deleted\n") #prints a message to the user that the task has been deleted
+        for key in list(to_do_list.keys()): #iterates through the keys of the to do list because we are updating the keys after deleting a task
+            to_do_list[int(key) - 1] = to_do_list.pop(key) #this simply updates the keys of the to do list after deleting a task by subtracting 1 from the key. for instance, if we delete task 2, we are left with task 1 and task 3.  task 3 becomes task 2 by subtracting 1 from the key
+        to_do_list_table() #calls the to_do_list_table function to display the current to do list
 
 def output_current_to_do_list(): #COMPLETED - outputs the current to do list
     console.print(f"Your current 'To Do List' is as follows -\n") #prints the current to do list
@@ -99,7 +108,11 @@ def output_current_to_do_list(): #COMPLETED - outputs the current to do list
         count += 1 #increments the count by 1
 
 def create_json_file(): #function to create a JSON file
-    user_json_file = json.dumps(to_do_list, indent=4) #converts the to do list to a JSON file with an indent of 4
+    if len(to_do_list) == 0: #checks if the length of the 'To Do List' is 0
+        console.print("[bold red]THE 'TO DO LIST' IS EMPTY! NOTHING TO EXPORT[/bold red]\n") #prints a message to the user that the to do list is empty and there is nothing to export
+        return #returns to the main function
+    else: #if there are tasks in the to do list then the following code is executed
+        user_json_file = json.dumps(to_do_list, indent=4) #converts the to do list to a JSON file with an indent of 4
 
 def output_user_json_file(): #function to output the JSON file
     console.print(f"Your 'To Do List' has been saved to a JSON file called 'user_to_do_list.json'\n") #prints a message to the user that the to do list has 
@@ -109,8 +122,12 @@ def output_user_json_file(): #function to output the JSON file
 
 def load_json_file(): #function to load a previous JSON file or JSON file to use in the 'To Do List' python program
     global to_do_list #sets the to do list variable as a global variable that can be used as if it was in scope
-    with open("user_to_do_list.json", "r") as file: #opens the JSON file in read mode
-        to_do_list = json.load(file) #loads the JSON file into the to do list variable
+    try:
+        with open("user_to_do_list.json", "r") as file: #opens the JSON file in read mode
+            to_do_list = json.load(file) #loads the JSON file into the to do list variable
+    except FileNotFoundError: #checks if the file is not found
+        console.print("[bold red]THE FILE 'user_to_do_list.json' DOES NOT EXIST![/bold red]\n") #prints a message to the user that the file does not exist
+    console.print(f"[bold green]Your 'To Do List' has been loaded from the JSON file called 'user_to_do_list.json[/bold green]'\n") #prints a message to the user that the to do list has been loaded from the JSON file
 
 def to_do_list_table(): #function to display the current to do list in a table format
     global name #sets the name variable as a global variable that can be used as if it was in scope
@@ -147,6 +164,20 @@ def to_do_list_priority_table():
         count += 1 #increments the count by 1
     
     console.print(table, "\n") #prints a new line
+
+def update_task(): #function to update a task in the to do list
+    if len(to_do_list) == 0: #checks if the length of the 'To Do List' is 0
+        console.print("[bold red]THERE IS NO TASK TO UPDATE![/bold red]\n") #prints a message to the user that there is no task to update
+        return #returns to the main function
+    else: #if there are tasks in the to do list then the following code is executed
+        task_update = Prompt.ask("Enter the task number you would like to update.  Total number of tasks -", choices = [str(num) for num in to_do_list.keys()]) #asks the user to input the task number they would like to update
+        console.print("\n") #prints a new line
+        new_task = Prompt.ask("Enter the new description of your task") #asks the user to input the new description of the task 
+        while not all(word.isalpha() for word in new_task.split()): #checks if all the words in the new task are alphabetic characters
+            console.print("Please enter a valid description of your task\n") #prints a message to the user to enter a valid task
+            new_task = Prompt.ask("Enter the new description of your task") #asks the user to input the new description of the task
+        console.print("\n") #prints a new line
+        to_do_list[int(task_update)][1] = new_task #updates the task in the to do list with the new task
 
 if __name__ == "__main__": #checks if the script is being run directly
     main() #calls the main function to run the program
