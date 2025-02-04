@@ -11,7 +11,7 @@ from rich import print #import the print function from the rich module
 from rich.console import Console #import the Console class from the rich module
 from rich.panel import Panel #import the Panel class from the rich module
 from rich.table import Table #import the Table class from the rich module which is used to display data in a table format
-from rich.prompt import Prompt #import the Prompt class from the rich module
+from rich.prompt import Prompt #import the Prompt class from the rich module which is used to prompt the user for input
 
 console = Console() #create a a Console class object called console
 to_do_list = {} #create an empty dictionary called to_do_list
@@ -26,8 +26,13 @@ def main():
     global name
 
     
-    name = Prompt.ask("\nEnter your name").lower().title() #asks the user for name.  sets all characters to lower case and then sets the first 
-    #character to uppercase via title
+    name = Prompt.ask("\nEnter your name").strip().lower().title() #asks the user for name.  strips any white space from the name and sets all characters to lower case and then sets the first letter of the name to upper case
+    console.print("\n") #prints a new line
+    
+    while not name.isalpha(): #checks if the name is not all alphabetic characters
+        console.print("Please enter a valid name\n") #prints a message to the user to enter a valid name
+        name = Prompt.ask("\nEnter your name").strip().lower().title() #asks the user for name.  strips any white space from the name and sets all characters to lower case and then sets the first letter of the name to upper case 
+
     console.print(f"\nWelcome {name} to your 'To Do List!'\n") #prints a welcome message to the user with their name
 
     while True: #infinite loop that will continue until the user selects the exit option
@@ -39,7 +44,7 @@ def main():
         console.print("\n") #prints a new line
 
         choice = Prompt.ask("Select an option (1-7)", choices =[str(i) for i in range(1,8)]) #asks the user to input a number matching one of the 
-        #above choices.  if it is not one of them an error is thrown stating Please select one of the available options. this is done via 'choices'
+        #above choices.  if it is not one of them, an error is thrown stating please select one of the available options. this is done via 'choices'
         console.print("\n") #prints a new line
 
         if choice == '1': #COMPLETED - #lets the user add a new task to the to do list
@@ -47,6 +52,9 @@ def main():
             #the above priority variable asks the user to input a number between 1 and 10.  if it is not one of them an error is thrown stating Please select one of the available options. this is done via 'choices'
             console.print("\n") #prints a new line
             task = Prompt.ask("Enter a description of your task") #asks the user to input a description of the task
+            while not all(word.isalpha() for word in task.split()): #checks if all the words in the task are alphabetic characters
+                console.print("Please enter a valid description of your task\n") #prints a message to the user to enter a valid task
+                task = Prompt.ask("Enter a description of your task")
             console.print("\n") #prints a new line
             task_number += 1 #increments the task number by 1
 
@@ -77,13 +85,10 @@ def main():
             exit() #exits the program
 
 def del_task(): #COMPLETED - lets the user delete a task from the to do list
-    task_deletion = Prompt.ask("Enter the task number you would like to delete") #asks the user to input the task number they would like to delete
+    task_deletion = Prompt.ask("Enter the task number you would like to delete. Total number of tasks -", choices = [str(num) for num in to_do_list.keys()]) #asks the user to input the task number they would like to delete
     console.print("\n") #prints a new line
-    if int(task_deletion) in to_do_list: #checks if the task number is in the to do list
-        del to_do_list[int(task_deletion)] #deletes the task from the to do list
-        console.print(f"Task {task_deletion} has been successfully deleted\n") #prints a message to the user that the task has been deleted
-    else: #if the task number is not in the to do list
-        console.print(f"Task {task_deletion} does not exist\n") #prints a message to the user that the task does not exist
+    del to_do_list[int(task_deletion)] #deletes the task from the to do list
+    console.print(f"Task {task_deletion} has been successfully deleted\n") #prints a message to the user that the task has been deleted
     to_do_list_table() #calls the to_do_list_table function to display the current to do list
 
 def output_current_to_do_list(): #COMPLETED - outputs the current to do list
@@ -143,4 +148,5 @@ def to_do_list_priority_table():
     
     console.print(table, "\n") #prints a new line
 
-main() #calls the main function to run the program
+if __name__ == "__main__": #checks if the script is being run directly
+    main() #calls the main function to run the program
