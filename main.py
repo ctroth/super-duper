@@ -88,16 +88,19 @@ def main():
             exit() #exits the program
 
 def del_task(): #COMPLETED - lets the user delete a task from the to do list
-    if len(to_do_list) == 0: #checks if the length of the 'To Do List' is 0
+    global to_do_list #sets the to do list variable as a global variable that can be used as if it was in scope
+    if len(to_do_list) == 0: # checks if the length of the 'To Do List' is 0
         console.print("[bold red]THERE IS NO TASK TO DELETE![/bold red]\n") #prints a message to the user that there is no task to delete
-        return #returns to the main function
+        return
     else: #if there are tasks in the to do list then the following code is executed
         task_deletion = Prompt.ask("Enter the task number you would like to delete. Total number of tasks -", choices = [str(num) for num in to_do_list.keys()]) #asks the user to input the task number they would like to delete
+        task_deletion = int(task_deletion) #converts the task deletion to an integer
         console.print("\n") #prints a new line
         del to_do_list[task_deletion] #deletes the task from the to do list
         console.print(f"Task {task_deletion} has been successfully deleted\n") #prints a message to the user that the task has been deleted
-        for key in list(to_do_list.keys()): #iterates through the keys of the to do list because we are updating the keys after deleting a task
-            to_do_list[int(key) - 1] = to_do_list.pop(key) #this simply updates the keys of the to do list after deleting a task by subtracting 1 from the key. for instance, if we delete task 2, we are left with task 1 and task 3.  task 3 becomes task 2 by subtracting 1 from the key
+        updated_to_do_list = {i+1: task for i, (key, task) in enumerate(to_do_list.items())} #this code works by iterating through the to do list items
+        #and then creating a new dictionary with the task number starting at 1 and then incrementing by 1.  it then sets the task as the value
+        to_do_list = updated_to_do_list
         to_do_list_table() #calls the to_do_list_table function to display the current to do list
 
 def output_current_to_do_list(): #COMPLETED - outputs the current to do list
