@@ -2,3 +2,5 @@
 
 2. Need to add auto save function that is separate from exporting the file to JSON.  So if the user accidentially exits the program, they do not lose their 'To Do List'
 
+3. The table outputs of the README on Github are not aligning correctly.  Reformat.
+
