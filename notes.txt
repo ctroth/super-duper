@@ -4,3 +4,4 @@
 
 3. The table outputs of the README on Github are not aligning correctly.  Reformat.
 
+4. Add an option to update the priority of a task
