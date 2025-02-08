@@ -164,7 +164,7 @@ Upon entering a new task description it will take you back to the main **Configu
 
 ### 5. View 'To Do List' Priority
 
-If you select **5. View 'To Do List' Priority', it will output your 'To Do List' in order of priority, rather than in the order that you input them in (task number).  Using the task list we created previously, we had selected 'Eat Food' as priority 1 in our list.  We then updated it to 'Go For A Run -
+If you select **5. View 'To Do List' Priority**, it will output your 'To Do List' in order of priority, rather than in the order that you input them in (task number).  Using the task list we created previously, we had selected 'Eat Food' as priority 1 in our list.  We then updated it to 'Go For A Run -
 
 ```python
 
@@ -184,8 +184,8 @@ If you select **5. View 'To Do List' Priority', it will output your 'To Do List'
 
 ### 8. Exit
 
-If you select **6. Exit**, you will see output similar to the one provided below in your CLI -
+If you select **8. Exit**, you will see output similar to the one provided below in your CLI -
 
 ```python
-Exiting your 'To Do List' Christian
+Exiting your 'To Do List' Bob
 ```

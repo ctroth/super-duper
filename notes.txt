@@ -1,0 +1,4 @@
+1. Noticed that when you delete a task and then add a new one, that the task number continues from you left off.  It does not start at the task number that was deleted.
+
+2. Need to add auto save function that is separate from exporting the file to JSON.  So if the user accidentially exits the program, they do not lose their 'To Do List'
+
