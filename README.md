@@ -44,7 +44,7 @@ You will then see the 'To Do List' Configuraiton Menu and the 8 options describe
 
 ```python
 ┌─────────────────────────────────────────────────────────────────── --- Configuration Menu ---  ────────────────────────────────────────────────────────────────────┐ 
-│                                                                                                                                        │ 
+│                                                                                                                                                                    │ 
 │ 1. Enter A New Task                                                                                                                                                │ 
 │ 2. View Current 'To Do List'                                                                                                                                       │ 
 │ 3. Delete Task From 'To Do List'                                                                                                                                   │ 
@@ -83,13 +83,13 @@ An example of a 'To Do List' -
 ```python
          Bob's 'To Do List'
 ┌─────────────┬──────────┬─────────────┐
-│ Task Number│ Priority│    Task    │
+│ Task Number │ Priority │    Task     │
 ├─────────────┼──────────┼─────────────┤
-│      1     │    1    │  Eat Food  │
+│      1      │    1     │  Eat Food   │
 ├─────────────┼──────────┼─────────────┤
-│      2     │    2    │ Drink Water│
+│      2      │    2     │ Drink Water │
 ├─────────────┼──────────┼─────────────┤
-│      3     │    3    │ Do Homework│
+│      3      │    3     │ Do Homework │
 └─────────────┴──────────┴─────────────┘
 ```
 
@@ -102,13 +102,13 @@ If you select **2. View Current To Do List**, it outputs the same information as
 ```python
          Bob's 'To Do List'
 ┌─────────────┬──────────┬─────────────┐
-│ Task Number│ Priority│    Task    │
+│ Task Number │ Priority │    Task     │
 ├─────────────┼──────────┼─────────────┤
-│      1     │    1    │  Eat Food  │
+│      1      │    1     │  Eat Food   │
 ├─────────────┼──────────┼─────────────┤
-│      2     │    2    │ Drink Water│
+│      2      │    2     │ Drink Water │
 ├─────────────┼──────────┼─────────────┤
-│      3     │    3    │ Do Homework│
+│      3      │    3     │ Do Homework │
 └─────────────┴──────────┴─────────────┘
 ```
 
@@ -124,11 +124,11 @@ Task 3 has been successfully deleted
 
           Bob's 'To Do List'
 ┌─────────────┬──────────┬─────────────┐
-│ Task Number│ Priority│    Task    │
+│ Task Number │ Priority │    Task     │
 ├─────────────┼──────────┼─────────────┤
-│      1     │    1    │  Eat Food  │
+│      1      │    1     │  Eat Food   │
 ├─────────────┼──────────┼─────────────┤
-│      2     │    2    │ Drink Water│
+│      2      │    2     │ Drink Water │
 └─────────────┴──────────┴─────────────┘
 ```
 You input the task number and it will provide feedback stating that it has been successfully deleted.
