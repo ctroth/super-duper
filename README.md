@@ -11,14 +11,16 @@
 
 ## Overview
 
-The **CLI To Do List** is designed to allow users to create a 'To Do List'.  The is able to add tasks to a list and set a priority for each task.  The program has 6 options to choose from when using it:
+The **CLI To Do List** is designed to allow users to create a 'To Do List'.  The is able to add tasks to a list and set a priority for each task.  The program has 8 options to choose from when using it:
 
-1) Lets the user add new tasks to the 'To Do List'
-2) Output the their current 'To Do List'
-3) Allows the user to delete a task from their 'To Do List' by specifying the task number
-4) Lists the users 'To Do List' in order of priority
-5) Outputs the user's 'To Do List' to a JSON file
-6) Exit the program
+1) Enter A New Task
+2) View Current 'To Do List'
+3) Delete Task From 'To Do List'
+4) Update Task In 'To Do List'
+5) View 'To Do List' Priority
+6) Export 'To Do List' to JSON File
+7) Load JSON FIle
+8) Exit
 
 ---
 
@@ -38,22 +40,23 @@ Enter your name:
 Welcome " " to your 'To Do List'
 ```
 
-You will then see the 'To Do List' Configuraiton Menu and the 6 options described in the **Overview** section.
+You will then see the 'To Do List' Configuraiton Menu and the 8 options described in the **Overview** section.
 
 ```python
-╭────── Configuration Menu ──────╮
-│                                │
-│  --- John's To Do List ---     │
-╰────────────────────────────────╯
+┌─────────────────────────────────────────────────────────────────── --- Configuration Menu ---  ────────────────────────────────────────────────────────────────────┐ 
+│                                                                                                                                        │ 
+│ 1. Enter A New Task                                                                                                                                                │ 
+│ 2. View Current 'To Do List'                                                                                                                                       │ 
+│ 3. Delete Task From 'To Do List'                                                                                                                                   │ 
+│ 4. Update Task In 'To Do List'                                                                                                                                     │ 
+│ 5. View 'To Do List' Priority                                                                                                                                      │ 
+│ 6. Export 'To Do List' to JSON File                                                                                                                                │ 
+│ 7. Load JSON File                                                                                                                                                  │ 
+│ 8. Exit                                                                                                                                                            │ 
+└─────────────────────────────────────────────────────────────────── --- Chris's 'To Do List' --- ───────────────────────────────────────────────────────────────────┘ 
 
-1. Enter a new task
-2. View Current To Do List
-3. Remove task from To Do List
-4. List taks in order of priority
-5. Export 'To Do List' to JSON file
-6. Exit
 
-Select an option (1-6) [1/2/3/4/5/6]:
+Select an option (1-8) [1/2/3/4/5/6/7/8]:
 
 ```
 
@@ -78,13 +81,16 @@ The instructions are straight forward.  Enter a prioroity number for the task yo
 An example of a 'To Do List' -
 
 ```python
-Your current 'To Do List' is as follows -
-
-1. Eat Food
-
-2. Drink Water
-
-3. Play With Kids
+         Bob's 'To Do List'
+┌─────────────┬──────────┬─────────────┐
+│ Task Number│ Priority│    Task    │
+├─────────────┼──────────┼─────────────┤
+│      1     │    1    │  Eat Food  │
+├─────────────┼──────────┼─────────────┤
+│      2     │    2    │ Drink Water│
+├─────────────┼──────────┼─────────────┤
+│      3     │    3    │ Do Homework│
+└─────────────┴──────────┴─────────────┘
 ```
 
 ---
@@ -94,110 +100,89 @@ Your current 'To Do List' is as follows -
 If you select **2. View Current To Do List**, it outputs the same information as when you add a new task to your 'To Do List'.
 
 ```python
-Your current 'To Do List' is as follows -
-
-1. Eat Food
-
-2. Drink Water
-
-3. Play With Kids
-
-4. Watch Tv
-
-5. Do Homework
+         Bob's 'To Do List'
+┌─────────────┬──────────┬─────────────┐
+│ Task Number│ Priority│    Task    │
+├─────────────┼──────────┼─────────────┤
+│      1     │    1    │  Eat Food  │
+├─────────────┼──────────┼─────────────┤
+│      2     │    2    │ Drink Water│
+├─────────────┼──────────┼─────────────┤
+│      3     │    3    │ Do Homework│
+└─────────────┴──────────┴─────────────┘
 ```
 
 ---
 
-### 3. Remove Task From 'To Do List'
+### 3. Delete  Task From 'To Do List'
 
 If you select **3. Remove Task From 'To Do List'**, it will ask you to provide the **task number** you would like to delete.  **DO NOT** provide your the priority number of your task.
 
 ```python
-Enter the task number you would like to delete: 3
+Enter the task number you would like to delete. Total number of tasks - [1/2/3]:
 Task 3 has been successfully deleted
+
+          Bob's 'To Do List'
+┌─────────────┬──────────┬─────────────┐
+│ Task Number│ Priority│    Task    │
+├─────────────┼──────────┼─────────────┤
+│      1     │    1    │  Eat Food  │
+├─────────────┼──────────┼─────────────┤
+│      2     │    2    │ Drink Water│
+└─────────────┴──────────┴─────────────┘
 ```
 You input the task number and it will provide feedback stating that it has been successfully deleted.
 
 If the task number is not in your 'To Do List', you will see the following output as an example.
 
 ```python
-Task 3 does not exist
+Enter the task number you would like to delete. Total number of tasks - [1/2]: 3
+Please select one of the available options
+Enter the task number you would like to delete. Total number of tasks - [1/2]:
 ```
 
 ---
 
-### 4. List Tasks In Order of Priority
+### 4. Update Task in 'To Do List'
 
-If you select **4. List Tasks In Order of Priority**, it will output the tasks in your 'To Do List' in order of priority, instead of task number.
-
-For instance, instead of seeing -
+If you select **4. Update Task in 'To Do List'**, it will ask you to enter the task number you would like to update as seen in the below output -
 
 ```python
-Your current 'To Do List' is as follows -
-
-1. Grocery Shopping
-
-2. Laundry
-
-3. Watch Tv
+Enter the task number you would like to update.  Total number of tasks - [1]:
 ```
 
-You will see them output in order of priority -
+It will then prompt y ou to enter the new description of your task as seen in the below output -
 
 ```python
-Priority 1. Grocery Shopping
-Priority 3. Laundry
-Priority 10. Watch Tv
+Enter the new description of your task:
 ```
+
+Upon entering a new task description it will take you back to the main **Configuration Menu** screen.
 
 
 ---
 
-### 5. Export 'To Do List' to JSON File
+### 5. View 'To Do List' Priority
 
-If you select **5. Export 'To Do List' to JSON File**, your 'To Do List' will output to a JSON file in the same folder as **main.py** called **user_to_do_list.json**.
-
-You will first see CLI output stating -
+If you select **5. View 'To Do List' Priority', it will output your 'To Do List' in order of priority, rather than in the order that you input them in (task number).  Using the task list we created previously, we had selected 'Eat Food' as priority 1 in our list.  We then updated it to 'Go For A Run -
 
 ```python
-Your 'To Do List' has been saved to a JSON file called 'user_to_do_list.json
-```
 
-Navigate to the same folder as the **main.py** file and open up your JSON file.  Your JSON file will appear as a normal JSON file such as the following -
-
-```json
-{
-    "1": [
-        "10",
-        "eat food"
-    ],
-    "2": [
-        "8",
-        "drink water"
-    ],
-    "3": [
-        "6",
-        "play with kids"
-    ],
-    "4": [
-        "4",
-        "watch tv"
-    ],
-    "5": [
-        "2",
-        "do homework"
-    ],
-    "6": [
-        "1",
-        "go to sleep"
-    ]
-}
 ```
 
 ---
 
-### 6. Exit
+### 6. Export 'To Do List' to JSON File
+
+
+---
+
+### 7. Load JSON File
+
+
+---
+
+### 8. Exit
 
 If you select **6. Exit**, you will see output similar to the one provided below in your CLI -
 
