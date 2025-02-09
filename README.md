@@ -11,16 +11,17 @@
 
 ## Overview
 
-The **CLI To Do List** is designed to allow users to create a 'To Do List'.  The is able to add tasks to a list and set a priority for each task.  The program has 8 options to choose from when using it:
+The **CLI To Do List** is designed to allow users to create a 'To Do List'.  The user is able to add tasks to a list and set a priority for each task.  The program has 9 options to choose from when using it:
 
 1) Enter A New Task
 2) View Current 'To Do List'
 3) Delete Task From 'To Do List'
 4) Update Task In 'To Do List'
-5) View 'To Do List' Priority
-6) Export 'To Do List' to JSON File
-7) Load JSON FIle
-8) Exit
+5) Update Task Priority
+6) View 'To Do List' Priority
+7) Export 'To Do List' to JSON File
+8) Load JSON File
+9) Exit
 
 ---
 
@@ -49,14 +50,15 @@ You will then see the 'To Do List' Configuraiton Menu and the 8 options describe
 │ 2. View Current 'To Do List'                                                                                                                                       │ 
 │ 3. Delete Task From 'To Do List'                                                                                                                                   │ 
 │ 4. Update Task In 'To Do List'                                                                                                                                     │ 
-│ 5. View 'To Do List' Priority                                                                                                                                      │ 
-│ 6. Export 'To Do List' to JSON File                                                                                                                                │ 
-│ 7. Load JSON File                                                                                                                                                  │ 
-│ 8. Exit                                                                                                                                                            │ 
-└─────────────────────────────────────────────────────────────────── --- Chris's 'To Do List' --- ───────────────────────────────────────────────────────────────────┘ 
+│ 5. Update Task Priority                                                                                                                                      │ 
+│ 6. View 'To Do List' Priority                                                                                                                                │ 
+│ 7. Export 'To Do List' to JSON File                                                                                                                                                  │ 
+│ 8.Load JSON File
+ │ 9. Exit                                                                                                                                                           │ 
+└─────────────────────────────────────────────────────────────────── --- Bob's 'To Do List' --- ───────────────────────────────────────────────────────────────────┘ 
 
 
-Select an option (1-8) [1/2/3/4/5/6/7/8]:
+Select an option (1-9) [1/2/3/4/5/6/7/8]:
 
 ```
 
@@ -162,30 +164,208 @@ Upon entering a new task description it will take you back to the main **Configu
 
 ---
 
-### 5. View 'To Do List' Priority
+### 5. Update Task Priority
 
-If you select **5. View 'To Do List' Priority**, it will output your 'To Do List' in order of priority, rather than in the order that you input them in (task number).  Using the task list we created previously, we had selected 'Eat Food' as priority 1 in our list.  We then updated it to 'Go For A Run -
+If you select **5. Update Task Priority**, it will allow you to update the priority of you chosen task.  See the example below -
 
 ```python
+           Bob's 'To Do List'
+┌─────────────┬──────────┬──────────────┐
+│ Task Number │ Priority │     Task     │
+├─────────────┼──────────┼──────────────┤
+│      1      │    1     │ Go For A Run │
+└─────────────┴──────────┴──────────────┘
+
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── --- Configuration Menu ---  ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐ 
+│                                                                                                                                                                                                                                                                                                                                         │ 
+│ 1. Enter A New Task                                                                                                                                                                                                                                                                                                                     │ 
+│ 2. View Current 'To Do List'                                                                                                                                                                                                                                                                                                            │ 
+│ 3. Delete Task From 'To Do List'                                                                                                                                                                                                                                                                                                        │ 
+│ 4. Update Task In 'To Do List'                                                                                                                                                                                                                                                                                                          │ 
+│ 5. Update Task Priority                                                                                                                                                                                                                                                                                                                 │ 
+│ 6. View 'To Do List' Priority                                                                                                                                                                                                                                                                                                           │ 
+│ 7. Export 'To Do List' to JSON File                                                                                                                                                                                                                                                                                                     │ 
+│ 8. Load JSON File                                                                                                                                                                                                                                                                                                                       │ 
+│ 9. Exit                                                                                                                                                                                                                                                                                                                                 │ 
+└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── --- Bob's 'To Do List' --- ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘ 
+
+
+Select an option (1-9) [1/2/3/4/5/6/7/8/9]: 5
+
+
+Enter the task number you would like to update. Total number of tasks - [1]: 1
+
+
+Enter the new priority of your task [1/2/3/4/5/6/7/8/9/10]: 10
+
+
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── --- Configuration Menu ---  ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐ 
+│                                                                                                                                                                                                                                                                                                                                         │ 
+│ 1. Enter A New Task                                                                                                                                                                                                                                                                                                                     │ 
+│ 2. View Current 'To Do List'                                                                                                                                                                                                                                                                                                            │ 
+│ 3. Delete Task From 'To Do List'                                                                                                                                                                                                                                                                                                        │ 
+│ 4. Update Task In 'To Do List'                                                                                                                                                                                                                                                                                                          │ 
+│ 5. Update Task Priority                                                                                                                                                                                                                                                                                                                 │ 
+│ 6. View 'To Do List' Priority                                                                                                                                                                                                                                                                                                           │ 
+│ 7. Export 'To Do List' to JSON File                                                                                                                                                                                                                                                                                                     │ 
+│ 8. Load JSON File                                                                                                                                                                                                                                                                                                                       │ 
+│ 9. Exit                                                                                                                                                                                                                                                                                                                                 │ 
+└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── --- Bob's 'To Do List' --- ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘ 
+
+
+Select an option (1-9) [1/2/3/4/5/6/7/8/9]: 2
+
+
+           Bob's 'To Do List'
+┌─────────────┬──────────┬──────────────┐
+│ Task Number │ Priority │     Task     │
+├─────────────┼──────────┼──────────────┤
+│      1      │    10    │ Go For A Run │
+└─────────────┴──────────┴──────────────┘
+```
+
+
+---
+
+### 6. View 'To Do List' Priority
+
+If you select **6. View 'To Do List' Priority**, you will be provided your 'To Do List' in order of priority from 1 to 10, rather than in the order of task number.  See an example below.
+
+```python
+
+            Bob's 'To Do List'
+┌─────────────┬──────────┬────────────────┐
+│ Task Number │ Priority │      Task      │
+├─────────────┼──────────┼────────────────┤
+│      1      │    10    │  Go For A Run  │
+├─────────────┼──────────┼────────────────┤
+│      2      │    5     │    Eat Food    │
+├─────────────┼──────────┼────────────────┤
+│      3      │    6     │  Drink Water   │
+├─────────────┼──────────┼────────────────┤
+│      4      │    2     │    Watch Tv    │
+├─────────────┼──────────┼────────────────┤
+│      5      │    1     │ Play With Kids │
+└─────────────┴──────────┴────────────────┘
+
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── --- Configuration Menu ---  ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐ 
+│                                                                                                                                                                                                                                                                                                                                         │ 
+│ 1. Enter A New Task                                                                                                                                                                                                                                                                                                                     │ 
+│ 2. View Current 'To Do List'                                                                                                                                                                                                                                                                                                            │ 
+│ 3. Delete Task From 'To Do List'                                                                                                                                                                                                                                                                                                        │ 
+│ 4. Update Task In 'To Do List'                                                                                                                                                                                                                                                                                                          │ 
+│ 5. Update Task Priority                                                                                                                                                                                                                                                                                                                 │ 
+│ 6. View 'To Do List' Priority                                                                                                                                                                                                                                                                                                           │ 
+│ 7. Export 'To Do List' to JSON File                                                                                                                                                                                                                                                                                                     │ 
+│ 8. Load JSON File                                                                                                                                                                                                                                                                                                                       │ 
+│ 9. Exit                                                                                                                                                                                                                                                                                                                                 │ 
+└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── --- Bob's 'To Do List' --- ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘ 
+
+
+Select an option (1-9) [1/2/3/4/5/6/7/8/9]: 6
+
+
+Your current 'To Do List' in order of priority is as follows -
+
+            Bob's 'To Do List'
+┌─────────────┬──────────┬────────────────┐
+│ Task Number │ Priority │      Task      │
+├─────────────┼──────────┼────────────────┤
+│      1      │    1     │ Play With Kids │
+├─────────────┼──────────┼────────────────┤
+│      2      │    2     │    Watch Tv    │
+├─────────────┼──────────┼────────────────┤
+│      3      │    5     │    Eat Food    │
+├─────────────┼──────────┼────────────────┤
+│      4      │    6     │  Drink Water   │
+├─────────────┼──────────┼────────────────┤
+│      5      │    10    │  Go For A Run  │
+└─────────────┴──────────┴────────────────┘
 
 ```
 
 ---
 
-### 6. Export 'To Do List' to JSON File
+### 7. Export 'To Do List' to JSON File
 
-
----
-
-### 7. Load JSON File
-
-
----
-
-### 8. Exit
-
-If you select **8. Exit**, you will see output similar to the one provided below in your CLI -
+If you select **7. Export 'To Do List' to JSON File**, you will see output stating that **"Your 'To Do List' has been saved to a JSON file called 'user_to_do_list.json"**.  See example below -
 
 ```python
+
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── --- Configuration Menu ---  ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐ 
+│                                                                                                                                                                                                                                                                                                                                         │ 
+│ 1. Enter A New Task                                                                                                                                                                                                                                                                                                                     │ 
+│ 2. View Current 'To Do List'                                                                                                                                                                                                                                                                                                            │ 
+│ 3. Delete Task From 'To Do List'                                                                                                                                                                                                                                                                                                        │ 
+│ 4. Update Task In 'To Do List'                                                                                                                                                                                                                                                                                                          │ 
+│ 5. Update Task Priority                                                                                                                                                                                                                                                                                                                 │ 
+│ 6. View 'To Do List' Priority                                                                                                                                                                                                                                                                                                           │ 
+│ 7. Export 'To Do List' to JSON File                                                                                                                                                                                                                                                                                                     │ 
+│ 8. Load JSON File                                                                                                                                                                                                                                                                                                                       │ 
+│ 9. Exit                                                                                                                                                                                                                                                                                                                                 │ 
+└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── --- Bob's 'To Do List' --- ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘ 
+
+
+Select an option (1-9) [1/2/3/4/5/6/7/8/9]: 7
+
+
+Your 'To Do List' has been saved to a JSON file called 'user_to_do_list.json'
+```
+
+---
+
+### 8. Load JSON File
+
+If you select **8. Load JSON File**, the program will load a JSON file as your 'To Do List'.  It is imperative that the file be named **user_to_do_list.json** in order for it to work correctly.  This ensures file consistency when the user exports the 'To Do List' and loads it back into the program.  See example below -
+
+```python
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── --- Configuration Menu ---  ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐ 
+│                                                                                                                                                                                                                                                                                                                                         │ 
+│ 1. Enter A New Task                                                                                                                                                                                                                                                                                                                     │ 
+│ 2. View Current 'To Do List'                                                                                                                                                                                                                                                                                                            │ 
+│ 3. Delete Task From 'To Do List'                                                                                                                                                                                                                                                                                                        │ 
+│ 4. Update Task In 'To Do List'                                                                                                                                                                                                                                                                                                          │ 
+│ 5. Update Task Priority                                                                                                                                                                                                                                                                                                                 │ 
+│ 6. View 'To Do List' Priority                                                                                                                                                                                                                                                                                                           │ 
+│ 7. Export 'To Do List' to JSON File                                                                                                                                                                                                                                                                                                     │ 
+│ 8. Load JSON File                                                                                                                                                                                                                                                                                                                       │ 
+│ 9. Exit                                                                                                                                                                                                                                                                                                                                 │ 
+└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── --- Bob's 'To Do List' --- ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘ 
+
+
+Select an option (1-9) [1/2/3/4/5/6/7/8/9]: 8
+
+
+Your 'To Do List' has been loaded from the JSON file called 'user_to_do_list.json'
+```
+
+---
+
+### 9. Exit
+
+If you select **9. Exit**, your 'To Do List' will be default exported to the a JSON file called **user_to_do_list.json**.  This is to ensure that the user does not lose the data that is in their 'To Do List' inadvertently.  Example output below -
+
+```python
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── --- Configuration Menu ---  ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐ 
+│                                                                                                                                                                                                                                                                                                                                         │ 
+│ 1. Enter A New Task                                                                                                                                                                                                                                                                                                                     │ 
+│ 2. View Current 'To Do List'                                                                                                                                                                                                                                                                                                            │ 
+│ 3. Delete Task From 'To Do List'                                                                                                                                                                                                                                                                                                        │ 
+│ 4. Update Task In 'To Do List'                                                                                                                                                                                                                                                                                                          │ 
+│ 5. Update Task Priority                                                                                                                                                                                                                                                                                                                 │ 
+│ 6. View 'To Do List' Priority                                                                                                                                                                                                                                                                                                           │ 
+│ 7. Export 'To Do List' to JSON File                                                                                                                                                                                                                                                                                                     │ 
+│ 8. Load JSON File                                                                                                                                                                                                                                                                                                                       │ 
+│ 9. Exit                                                                                                                                                                                                                                                                                                                                 │ 
+└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── --- Bob's 'To Do List' --- ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘ 
+
+
+Select an option (1-9) [1/2/3/4/5/6/7/8/9]: 9
+
+
+Your 'To Do List' has been saved to a JSON file called 'user_to_do_list.json'
+
+If you want to load this 'To Do List' in the future, select option 8 from the menu
+
 Exiting your 'To Do List' Bob
 ```

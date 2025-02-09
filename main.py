@@ -44,7 +44,7 @@ def main():
             renderable="[bold white]\n1. Enter A New Task\n2. View Current 'To Do List'\n3. Delete Task From 'To Do List'\n4. Update Task In 'To Do List'\n5. Update Task Priority\n6. View 'To Do List' Priority\n7. Export 'To Do List' to JSON File\n8. Load JSON File\n9. Exit [/bold white]")) #prints a panel with the configuration menu options.  uses title, subtitle, and renderable to display the menu.  Renderable is used to display the menu options.  The word renderable is used to display the menu options in a different color
         console.print("\n") #prints a new line
 
-        choice = Prompt.ask("Select an option (1-8)", choices =[str(i) for i in range(1,10)]) #asks the user to input a number matching one of the 
+        choice = Prompt.ask("Select an option (1-9)", choices =[str(i) for i in range(1,10)]) #asks the user to input a number matching one of the 
         #above choices.  if it is not one of them, an error is thrown stating please select one of the available options. this is done via 'choices'
         console.print("\n") #prints a new line
 
