@@ -182,5 +182,16 @@ def update_task(): #function to update a task in the to do list
         console.print("\n") #prints a new line
         to_do_list[int(task_update)][1] = new_task #updates the task in the to do list with the new task
 
+def update_priority(): #function to update the priority of a task in the to do list
+    if len(to_do_list) == 0: #checks if the length of the 'To Do List' is 0
+        console.print("[bold red]THERE IS NO TASK TO UPDATE![/bold red]\n")
+        return
+    else: #if there are tasks in the 'To Do List'  then the following code is executed
+        task_number = Prompt.ask("Enter the task number you would like to update. Total number of tasks -", choices = [str(num) for num in to_do_list.keys()]) #asks the user to input the task number they would like to update
+        console.print("\n") #prints a new line
+        new_priority = Prompt.ask("Enter the new priority of your task", choices = [str(i) for i in range(1,11)]) #asks the user to input the new priority of the task
+        console.print("\n") #prints a new line
+        to_do_list[int(task_number)][0] = new_priority #updates the priority of the task in the to do list with the new priority
+        
 if __name__ == "__main__": #checks if the script is being run directly
     main() #calls the main function to run the program
